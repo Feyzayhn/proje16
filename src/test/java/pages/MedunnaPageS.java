@@ -60,6 +60,9 @@ public class MedunnaPageS {
     @FindBy(xpath = "//li[@style='background-color: rgb(255, 153, 0);']") // size = 2
     public List<WebElement> orangeStrength;
 
+    @FindBy(xpath = "//li[@style='background-color: rgb(255, 255, 0);']") // size = 3
+    public List<WebElement> yellowStrength;
+
     @FindBy(xpath = "//li[@style='background-color: rgb(153, 255, 0);']") // size = 4
     public List<WebElement> limeGreenStrength;
 
