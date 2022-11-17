@@ -9,6 +9,8 @@ import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+import java.io.IOException;
+
 public class MedunnaStepDef {
 
     MedunnaPageS page = new MedunnaPageS();
@@ -77,9 +79,37 @@ public class MedunnaStepDef {
 
 
     @And("{string} mesajinin gorundugunu dogrular")
-    public void mesajininGorundugunuDogrular(String kelime) {
+    public void mesajininGorundugunuDogrular(String kelime) throws IOException {
 
-        ReusableMethods.waitForVisibility(page.passwordChangedMessage,10);
+        ReusableMethods.waitForVisibility(page.passwordChangedMessage, 10);
+        ReusableMethods.getScreenshotWebElement("Passwordchanged", page.passwordChangedMessage);
         Assert.assertEquals(kelime, page.passwordChangedMessage.getText());
+    }
+
+    @Then("Kullanici buyuk harf,rakam ve ozel karakter ile en az yedi karakter new password girer")
+    public void kullaniciBuyukHarfRakamVeOzelKarakterIleEnAzYediKarakterNewPasswordGirer() {
+
+        page.newPasswordBox.sendKeys("AAA123!Q");
+    }
+
+
+    @Then("Password strength seviyesinin gorundugunu dogrular")
+    public void passwordStrengthSeviyesininGorundugunuDogrular() throws IOException {
+
+        ReusableMethods.getScreenshotWebElement("limegreen",page.strengthBar);
+        Assert.assertEquals(4, page.limeGreenStrength.size());
+    }
+
+    @And("New password'a kucuk harf ekler")
+    public void newPasswordAKucukHarfEkler() {
+
+        page.newPasswordBox.sendKeys("a");
+    }
+
+    @And("Password strength seviyesinin degistigini dogrular")
+    public void passwordStrengthSeviyesininDegistiginiDogrular() throws IOException {
+
+        ReusableMethods.getScreenshotWebElement("green", page.strengthBar);
+        Assert.assertEquals(5, page.greenStrength.size());
     }
 }
