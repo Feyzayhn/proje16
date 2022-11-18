@@ -41,13 +41,13 @@ public class ReusableMethods {
 
     //========ScreenShot Web Element(Bir webelementin resmini alma)=====//
     public static String getScreenshotWebElement(String name, WebElement element) throws IOException {
-        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd-hhmm").format(new Date());
 
         // TakesScreenshot, ekran görüntüsünü alan bir selenyum arayüzüdür.
         File source = element.getScreenshotAs(OutputType.FILE);
 
         // ekran görüntüsü konumunun tam yolu
-        String wElementSS = System.getProperty("user.dir") + "/target/WElementScreenshots/" + name + date + ".png";
+        String wElementSS = System.getProperty("user.dir") + "/target/WElementScreenshots/" + name + "_" + date + ".png";
         File finalDestination = new File(wElementSS);
 
         // ekran görüntüsünü verilen yola kaydedin

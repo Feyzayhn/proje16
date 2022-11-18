@@ -1,17 +1,15 @@
 package stepDefinitions;
 
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.apache.poi.ss.usermodel.*;
-import org.junit.Assert;
 import pages.MedunnaPageS;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
 import java.io.*;
+
+import static org.junit.Assert.*;
 
 public class MedunnaStepDef {
 
@@ -70,7 +68,7 @@ public class MedunnaStepDef {
 
 
         try {
-            Assert.assertFalse(page.notMatchTextMessage.isDisplayed());
+            assertFalse(page.notMatchTextMessage.isDisplayed());
         } catch (Exception e) {
             ReusableMethods.waitFor(2);
             ReusableMethods.getScreenshotWebElement("SSpasword", page.passwordScreen);
@@ -93,7 +91,7 @@ public class MedunnaStepDef {
     @And("kullanici Password strenght seviyesinin limegreen oldugunu dogrular")
     public void kullaniciPasswordStrenghtSeviyesininLimegreenOldugunuDogrular() throws IOException {
 
-        Assert.assertEquals(4, page.limeGreenStrength.size());
+        assertEquals(4, page.limeGreenStrength.size());
         ReusableMethods.getScreenshotWebElement("limegreenSS", page.strengthBar);
     }
 
@@ -106,7 +104,7 @@ public class MedunnaStepDef {
     @And("kullanici Password strength seviyesinin green oldugunu dogrular")
     public void kullaniciPasswordStrengthSeviyesininGreenOldugunuDogrular() throws IOException {
 
-        Assert.assertEquals(5, page.greenStrength.size());
+        assertEquals(5, page.greenStrength.size());
         ReusableMethods.getScreenshotWebElement("SSgreen", page.strengthBar);
     }
 
@@ -162,27 +160,97 @@ public class MedunnaStepDef {
         page.newPasswordBox.sendKeys("javA011!!");
     }
 
-    //String sifre = "Team16kullanici!";
-    String sifre = "Kullaniciteam16!";
-    //String eskiSifre = "Kullaniciteam16!";
-    String eskiSifre = "Team16kullanici!";
+    String sifre;
+    String eskiSifre;
+    String bos;
 
     @And("kullanici mevcut sifreyi current password box'a girer")
-    public void kullaniciMevcutSifreyiCurrentPasswordBoxAGirer() {
+    public void kullaniciMevcutSifreyiCurrentPasswordBoxAGirer() throws IOException {
+
+
+        String filePath = "src/resources/sifre.xlsx";
+        FileInputStream fis = new FileInputStream(filePath);
+        Workbook wb = WorkbookFactory.create(fis);
+
+        // read
+        System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
+        System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
+
+
+        sifre = wb.getSheet("Sayfa1").getRow(0).getCell(0).toString();
+        eskiSifre = wb.getSheet("Sayfa1").getRow(1).getCell(0).toString();
+        bos = "";
+
+
+        // login
+        page.accountMenu.click();
+        ReusableMethods.waitFor(2);
+        page.signIn.click();
+        ReusableMethods.waitFor(2);
+        page.usernameBox.sendKeys(ConfigReader.getProperty("userUsername"));
+        ReusableMethods.waitFor(2);
+        page.passwordBox.sendKeys(sifre);
+        ReusableMethods.waitFor(2);
+        page.signInButton.click();
+
+
+        page.accountMenu.click();
+        ReusableMethods.waitFor(2);
+        page.passwordLink.click();
+        ReusableMethods.waitFor(2);
 
         page.currentPasswordBox.sendKeys(sifre);
+        ReusableMethods.waitFor(2);
+        page.newPasswordBox.sendKeys(eskiSifre);
+        ReusableMethods.waitFor(2);
+        page.confirmPasswordBox.sendKeys(eskiSifre);
+        ReusableMethods.waitFor(2);
+
+
+        bos = sifre;
+        sifre = eskiSifre;
+        eskiSifre = bos;
+
+
+        System.out.println("sifre = " + sifre);
+        System.out.println("eskiSifre = " + eskiSifre);
+
+        // Delete
+        Sheet sheet = wb.getSheet("Sayfa1");
+        Row row = sheet.getRow(0);
+        Cell cell = row.getCell(0);
+        row.removeCell(cell);
+        FileOutputStream fos = new FileOutputStream(filePath);
+        wb.write(fos);
+        // Delete
+        Sheet sheet1 = wb.getSheet("Sayfa1");
+        Row row2 = sheet1.getRow(1);
+        Cell cell2 = row2.getCell(0);
+        fos = new FileOutputStream(filePath);
+        row2.removeCell(cell2);
+        wb.write(fos);
+
+        //write
+        wb.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
+        wb.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
+        fos = new FileOutputStream(filePath);
+        wb.write(fos);
+
+        fos.close();
+        fis.close();
+        wb.close();
     }
 
     @And("kullanici new password box'a eski sifreyi girer")
     public void kullaniciNewPasswordBoxAEskiSifreyiGirer() {
 
-        page.newPasswordBox.sendKeys(eskiSifre);
+
     }
 
     @And("kullanici new password confirmation box'a ayni sifreyi girer")
     public void kullaniciNewPasswordConfirmationBoxAAyniSifreyiGirer() {
 
-        page.confirmPasswordBox.sendKeys(eskiSifre);
+
     }
 
     @And("kullanici save butonuna tiklar")
@@ -196,13 +264,20 @@ public class MedunnaStepDef {
     public void kullaniciPasswordChangedUyarisininGorunurOlmadiginiDogrular() {
 
         try {
-            Assert.assertFalse(page.passwordChangedMessage.isDisplayed());
+
+            ReusableMethods.waitForVisibility(page.passwordChangedMessage, 15);
+            assertTrue(page.passwordChangedMessage.isDisplayed());
+            ReusableMethods.getScreenshot("eskisifrekullanildi");
 
         } catch (Exception e) {
 
             System.out.println("Eski sifre kullanilabildi");
+            try {
+                ReusableMethods.getScreenshot("EskiSifreKullanildi");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
-
     }
 
     @Given("excel test")
@@ -212,6 +287,7 @@ public class MedunnaStepDef {
         FileInputStream fis = new FileInputStream(filePath);
         Workbook wb = WorkbookFactory.create(fis);
 
+        // read
         System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
         System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
 
@@ -227,14 +303,14 @@ public class MedunnaStepDef {
         System.out.println("sifre = " + sifre);
         System.out.println("eskiSifre = " + eskiSifre);
 
+        // Delete
         Sheet sheet = wb.getSheet("Sayfa1");
         Row row = sheet.getRow(0);
         Cell cell = row.getCell(0);
         row.removeCell(cell);
         FileOutputStream fos = new FileOutputStream(filePath);
         wb.write(fos);
-
-
+        // Delete
         Sheet sheet1 = wb.getSheet("Sayfa1");
         Row row2 = sheet1.getRow(1);
         Cell cell2 = row2.getCell(0);
@@ -243,6 +319,7 @@ public class MedunnaStepDef {
         wb.write(fos);
 
 
+        //write
         wb.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
         wb.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
         fos = new FileOutputStream(filePath);
@@ -269,7 +346,7 @@ public class MedunnaStepDef {
     @And("kullanici {string} mesajinin gorunur oldugunu dogrular")
     public void kullaniciMesajininGorunurOldugunuDogrular(String message) throws IOException {
 
-        Assert.assertTrue(page.notMatchTextMessage.isDisplayed());
+        assertTrue(page.notMatchTextMessage.isDisplayed());
         ReusableMethods.getScreenshotWebElement("dontMatch", page.notMatchTextMessage);
     }
 
@@ -282,7 +359,15 @@ public class MedunnaStepDef {
     @And("kullanici Password strength seviyesinin red oldugunu dogrular")
     public void kullaniciPasswordStrengthSeviyesininRedOldugunuDogrular() throws IOException {
 
-        Assert.assertEquals(1, page.redStrength.size());
+        assertEquals(1, page.redStrength.size());
         ReusableMethods.getScreenshotWebElement("redStrength", page.strengthBar);
+    }
+
+
+    @And("Kullanici {string} boxa en az yedi karakter girerek strenght bar'in farkli durumlarini test eder.")
+    public void kullaniciBoxaEnAzYediKarakterGirerekStrenghtBarInFarkliDurumlariniTestEder(String password) throws IOException {
+
+        page.newPasswordBox.sendKeys(password);
+        ReusableMethods.getScreenshotWebElement(password, page.strength);
     }
 }

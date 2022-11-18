@@ -62,6 +62,9 @@ public class MedunnaPageS {
     @FindBy(css = "#strengthBar")
     public WebElement strengthBar;
 
+    @FindBy(css = "#strength")
+    public WebElement strength;
+
     @FindBy(xpath = "//li[@style='background-color: rgb(255, 0, 0);']") // size = 1
     public List<WebElement> redStrength;  // css  #strengthBar>:nth-child(1)
 

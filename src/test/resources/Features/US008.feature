@@ -47,11 +47,11 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
   @TC007
   Scenario: TC007 Eski sifre kullanilmamalidir
     Given kullanici "medunnaUrl" url'e gider
-    When kullanici login olur
-    Then kullanici account menuden password link tiklar
+    #When kullanici login olur
+    #Then kullanici account menuden password link tiklar
     And kullanici mevcut sifreyi current password box'a girer
-    And kullanici new password box'a eski sifreyi girer
-    And kullanici new password confirmation box'a ayni sifreyi girer
+    #And kullanici new password box'a eski sifreyi girer
+    #And kullanici new password confirmation box'a ayni sifreyi girer
     And kullanici save butonuna tiklar
     And kullanici 4 saniye bekler
     And kullanici Password changed! uyarisinin gorunur olmadigini dogrular
@@ -82,7 +82,27 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
 
 
   @negative2_TC006
-  Scenario: TC
+  Scenario Outline: TC006 negatif Guclu bir parola icin sifre en az 7 karakterden olusmalidir
+    Given kullanici "medunnaUrl" url'e gider
+    When kullanici login olur
+    Then kullanici account menuden password link tiklar
+    And kullanici current password girer
+    And  Kullanici "<new password>" boxa en az yedi karakter girerek strenght bar'in farkli durumlarini test eder.
+    And sayfayi kapatir
+
+
+    Examples:
+      | new password          |
+      | ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ. |
+      | 12312332              |
+      | ASDFSDFD              |
+      | aafsnffg              |
+      | ........              |
+      | ###########           |
+      | @@@@@@@               |
+      | @@@@@@@@@@            |
+      | ##########.           |
+      | ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ  |
 
 
   @excel
