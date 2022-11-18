@@ -14,7 +14,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
 
 
   @2345
-  Scenario Outline:TC002 TC003 TC004T C005 Sifre en az 1 buyuk harf icermeli ve "Password strength:" seviyesinin degistigi gorulebilmelidir.
+  Scenario Outline:TC002 TC003 TC004 TC005 Sifre en az 1 buyuk harf icermeli ve "Password strength:" seviyesinin degistigi gorulebilmelidir.
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
     Then kullanici account menuden password link tiklar
@@ -47,15 +47,13 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
   @TC007
   Scenario: TC007 Eski sifre kullanilmamalidir
     Given kullanici "medunnaUrl" url'e gider
-    #When kullanici login olur
-    #Then kullanici account menuden password link tiklar
-    And kullanici mevcut sifreyi current password box'a girer
-    #And kullanici new password box'a eski sifreyi girer
-    #And kullanici new password confirmation box'a ayni sifreyi girer
+    When kullanici login olup account menuden password linke tiklar
+    Then kullanici current passwordu girer ve new password ve confirm password'e eski sifreyi girer
     And kullanici save butonuna tiklar
-    And kullanici 4 saniye bekler
+    And kullanici 2 saniye bekler
     And kullanici Password changed! uyarisinin gorunur olmadigini dogrular
     And sayfayi kapatir
+
 
   @negativeTC001
   Scenario: TC001 negatif "New password confirmation" onaylanabilmelidir
@@ -103,9 +101,4 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
       | @@@@@@@@@@            |
       | ##########.           |
       | ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ  |
-
-
-  @excel
-  Scenario:
-    Given excel test
-    And sayfayi kapatir
+      | Asf!23                |

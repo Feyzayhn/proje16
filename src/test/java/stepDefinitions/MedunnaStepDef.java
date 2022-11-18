@@ -14,6 +14,13 @@ import static org.junit.Assert.*;
 public class MedunnaStepDef {
 
     MedunnaPageS page = new MedunnaPageS();
+    String sifre;
+    String eskiSifre;
+    String bos;
+    String filePath;
+    FileInputStream fis;
+    Workbook workbook;
+    FileOutputStream fos;
 
     @Given("kullanici {string} url'e gider")
     public void kullaniciUrlEGider(String url) {
@@ -160,99 +167,6 @@ public class MedunnaStepDef {
         page.newPasswordBox.sendKeys("javA011!!");
     }
 
-    String sifre;
-    String eskiSifre;
-    String bos;
-
-    @And("kullanici mevcut sifreyi current password box'a girer")
-    public void kullaniciMevcutSifreyiCurrentPasswordBoxAGirer() throws IOException {
-
-
-        String filePath = "src/resources/sifre.xlsx";
-        FileInputStream fis = new FileInputStream(filePath);
-        Workbook wb = WorkbookFactory.create(fis);
-
-        // read
-        System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
-        System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
-
-
-        sifre = wb.getSheet("Sayfa1").getRow(0).getCell(0).toString();
-        eskiSifre = wb.getSheet("Sayfa1").getRow(1).getCell(0).toString();
-        bos = "";
-
-
-        // login
-        page.accountMenu.click();
-        ReusableMethods.waitFor(2);
-        page.signIn.click();
-        ReusableMethods.waitFor(2);
-        page.usernameBox.sendKeys(ConfigReader.getProperty("userUsername"));
-        ReusableMethods.waitFor(2);
-        page.passwordBox.sendKeys(sifre);
-        ReusableMethods.waitFor(2);
-        page.signInButton.click();
-
-
-        page.accountMenu.click();
-        ReusableMethods.waitFor(2);
-        page.passwordLink.click();
-        ReusableMethods.waitFor(2);
-
-        page.currentPasswordBox.sendKeys(sifre);
-        ReusableMethods.waitFor(2);
-        page.newPasswordBox.sendKeys(eskiSifre);
-        ReusableMethods.waitFor(2);
-        page.confirmPasswordBox.sendKeys(eskiSifre);
-        ReusableMethods.waitFor(2);
-
-
-        bos = sifre;
-        sifre = eskiSifre;
-        eskiSifre = bos;
-
-
-        System.out.println("sifre = " + sifre);
-        System.out.println("eskiSifre = " + eskiSifre);
-
-        // Delete
-        Sheet sheet = wb.getSheet("Sayfa1");
-        Row row = sheet.getRow(0);
-        Cell cell = row.getCell(0);
-        row.removeCell(cell);
-        FileOutputStream fos = new FileOutputStream(filePath);
-        wb.write(fos);
-        // Delete
-        Sheet sheet1 = wb.getSheet("Sayfa1");
-        Row row2 = sheet1.getRow(1);
-        Cell cell2 = row2.getCell(0);
-        fos = new FileOutputStream(filePath);
-        row2.removeCell(cell2);
-        wb.write(fos);
-
-        //write
-        wb.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
-        wb.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
-        fos = new FileOutputStream(filePath);
-        wb.write(fos);
-
-        fos.close();
-        fis.close();
-        wb.close();
-    }
-
-    @And("kullanici new password box'a eski sifreyi girer")
-    public void kullaniciNewPasswordBoxAEskiSifreyiGirer() {
-
-
-    }
-
-    @And("kullanici new password confirmation box'a ayni sifreyi girer")
-    public void kullaniciNewPasswordConfirmationBoxAAyniSifreyiGirer() {
-
-
-    }
-
     @And("kullanici save butonuna tiklar")
     public void kullaniciSaveButonunaTiklar() {
 
@@ -280,55 +194,7 @@ public class MedunnaStepDef {
         }
     }
 
-    @Given("excel test")
-    public void excelTest() throws IOException {
 
-        String filePath = "src/resources/sifre.xlsx";
-        FileInputStream fis = new FileInputStream(filePath);
-        Workbook wb = WorkbookFactory.create(fis);
-
-        // read
-        System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
-        System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
-
-
-        String sifre = wb.getSheet("Sayfa1").getRow(0).getCell(0).toString();
-        String eskiSifre = wb.getSheet("Sayfa1").getRow(1).getCell(0).toString();
-        String bos = "";
-
-        bos = sifre;
-        sifre = eskiSifre;
-        eskiSifre = bos;
-
-        System.out.println("sifre = " + sifre);
-        System.out.println("eskiSifre = " + eskiSifre);
-
-        // Delete
-        Sheet sheet = wb.getSheet("Sayfa1");
-        Row row = sheet.getRow(0);
-        Cell cell = row.getCell(0);
-        row.removeCell(cell);
-        FileOutputStream fos = new FileOutputStream(filePath);
-        wb.write(fos);
-        // Delete
-        Sheet sheet1 = wb.getSheet("Sayfa1");
-        Row row2 = sheet1.getRow(1);
-        Cell cell2 = row2.getCell(0);
-        fos = new FileOutputStream(filePath);
-        row2.removeCell(cell2);
-        wb.write(fos);
-
-
-        //write
-        wb.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
-        wb.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
-        fos = new FileOutputStream(filePath);
-        wb.write(fos);
-
-        fos.close();
-        fis.close();
-        wb.close();
-    }
 
     @And("kullanici new password box'a sifre girer")
     public void kullaniciNewPasswordBoxASifreGirer() {
@@ -369,5 +235,83 @@ public class MedunnaStepDef {
 
         page.newPasswordBox.sendKeys(password);
         ReusableMethods.getScreenshotWebElement(password, page.strength);
+    }
+
+
+    @When("kullanici login olup account menuden password linke tiklar")
+    public void kullaniciLoginOlupAccountMenudenPasswordLinkeTiklar() throws IOException {
+
+
+        filePath = "src/resources/excelTest.xlsx";
+        fis = new FileInputStream(filePath);
+        workbook = WorkbookFactory.create(fis);
+        // read
+        //System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
+        //System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
+
+        sifre = workbook.getSheet("Sayfa1").getRow(0).getCell(0).toString();
+        eskiSifre = workbook.getSheet("Sayfa1").getRow(1).getCell(0).toString();
+        bos = "";
+
+        // login
+        page.accountMenu.click();
+        ReusableMethods.waitFor(2);
+        page.signIn.click();
+        ReusableMethods.waitFor(2);
+        page.usernameBox.sendKeys(ConfigReader.getProperty("excelUsername"));
+        ReusableMethods.waitFor(2);
+        page.passwordBox.sendKeys(sifre);
+        ReusableMethods.waitFor(2);
+        page.signInButton.click();
+        page.accountMenu.click();
+        ReusableMethods.waitFor(2);
+        page.passwordLink.click();
+        ReusableMethods.waitFor(2);
+    }
+
+    @Then("kullanici current passwordu girer ve new password ve confirm password'e eski sifreyi girer")
+    public void kullaniciCurrentPassworduGirerVeNewPasswordVeConfirmPasswordEEskiSifreyiGirer() throws IOException {
+
+        filePath = "src/resources/excelTest.xlsx";
+
+        page.currentPasswordBox.sendKeys(sifre);
+        ReusableMethods.waitFor(2);
+        page.newPasswordBox.sendKeys(eskiSifre);
+        ReusableMethods.waitFor(2);
+        page.confirmPasswordBox.sendKeys(eskiSifre);
+        ReusableMethods.waitFor(2);
+
+        bos = sifre;
+        sifre = eskiSifre;
+        eskiSifre = bos;
+
+        System.out.println("sifre = " + sifre);
+        System.out.println("eskiSifre = " + eskiSifre);
+
+
+        // Delete
+        Sheet sheet = workbook.getSheet("Sayfa1");
+        Row row = sheet.getRow(0);
+        Cell cell = row.getCell(0);
+        row.removeCell(cell);
+        fos = new FileOutputStream(filePath);
+        workbook.write(fos);
+        // Delete
+        Sheet sheet1 = workbook.getSheet("Sayfa1");
+        Row row2 = sheet1.getRow(1);
+        Cell cell2 = row2.getCell(0);
+        fos = new FileOutputStream(filePath);
+        row2.removeCell(cell2);
+        workbook.write(fos);
+
+        //write
+        workbook.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
+        workbook.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
+        fos = new FileOutputStream(filePath);
+        workbook.write(fos);
+
+        fos.close();
+        fis.close();
+        workbook.close();
     }
 }
