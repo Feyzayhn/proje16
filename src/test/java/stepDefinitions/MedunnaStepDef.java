@@ -21,6 +21,9 @@ public class MedunnaStepDef {
     FileInputStream fis;
     Workbook workbook;
     FileOutputStream fos;
+    Row row;
+    Cell cell;
+    Sheet sheet;
 
     @Given("kullanici {string} url'e gider")
     public void kullaniciUrlEGider(String url) {
@@ -195,7 +198,6 @@ public class MedunnaStepDef {
     }
 
 
-
     @And("kullanici new password box'a sifre girer")
     public void kullaniciNewPasswordBoxASifreGirer() {
 
@@ -290,19 +292,20 @@ public class MedunnaStepDef {
 
 
         // Delete
-        Sheet sheet = workbook.getSheet("Sayfa1");
-        Row row = sheet.getRow(0);
-        Cell cell = row.getCell(0);
+        sheet = workbook.getSheet("Sayfa1");
+        row = sheet.getRow(0);
+        cell = row.getCell(0);
         row.removeCell(cell);
         fos = new FileOutputStream(filePath);
         workbook.write(fos);
         // Delete
-        Sheet sheet1 = workbook.getSheet("Sayfa1");
-        Row row2 = sheet1.getRow(1);
-        Cell cell2 = row2.getCell(0);
+        sheet = workbook.getSheet("Sayfa1");
+        row = sheet.getRow(1);
+        cell = row.getCell(0);
         fos = new FileOutputStream(filePath);
-        row2.removeCell(cell2);
+        row.removeCell(cell);
         workbook.write(fos);
+
 
         //write
         workbook.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
