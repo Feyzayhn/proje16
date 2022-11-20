@@ -11,6 +11,13 @@ public class DBUtils {
     private static Statement statement;
     private static ResultSet resultSet;
 
+    /*
+    name = Medunna
+    host = medunna.com
+    Database = medunna_db
+    username = medunna_user
+    password = medunna_pass_987
+     */
     public static void createConnection() { // Method1 = Baglanti olustur
 
         String url = "jdbc:postgresql://localhost:5432/techproed";
@@ -20,7 +27,7 @@ public class DBUtils {
         String password = "690101";
         String medunnaPassword = "medunna_pass_987";
         try {
-            connection = DriverManager.getConnection(url, user, password);
+            connection = DriverManager.getConnection(medunnaUrl, medunnaUser, medunnaPassword);
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block

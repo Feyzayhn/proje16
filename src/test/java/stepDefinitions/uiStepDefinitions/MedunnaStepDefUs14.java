@@ -56,7 +56,6 @@ public class MedunnaStepDefUs14 {
         ReusableMethods.waitForVisibility((WebElement) page.editButton,15);
         int editButton = ReusableMethods.random().nextInt(page.editButton.size() - 1);
         page.editButton.get(editButton).click();
-
     }
 
     @Then("doctor status bilgisi secer ve Save button'a tiklar")
