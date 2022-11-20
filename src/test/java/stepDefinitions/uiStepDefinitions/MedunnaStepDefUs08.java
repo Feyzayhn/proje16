@@ -1,4 +1,4 @@
-package stepDefinitions;
+package stepDefinitions.uiStepDefinitions;
 
 import io.cucumber.java.en.*;
 import org.apache.poi.ss.usermodel.*;

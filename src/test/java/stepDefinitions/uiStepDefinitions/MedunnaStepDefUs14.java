@@ -1,21 +1,16 @@
-package stepDefinitions;
+package stepDefinitions.uiStepDefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import pages.MedunnaPageS;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -58,6 +53,7 @@ public class MedunnaStepDefUs14 {
     public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
         ReusableMethods.waitFor(3);
+        ReusableMethods.waitForVisibility((WebElement) page.editButton,15);
         int editButton = ReusableMethods.random().nextInt(page.editButton.size() - 1);
         page.editButton.get(editButton).click();
 
@@ -73,8 +69,6 @@ public class MedunnaStepDefUs14 {
                 .sendKeys(Keys.ENTER)
                 .perform();
         ReusableMethods.getScreenshot("status");
-        ReusableMethods.waitFor(3);
-        ReusableMethods.getActions().sendKeys(Keys.PAGE_DOWN).perform();
         ReusableMethods.waitFor(3);
         List<WebElement> statusDdm = ReusableMethods.select(page.statusDdm).getOptions();
         int index = ReusableMethods.random().nextInt(statusDdm.size() - 1);
