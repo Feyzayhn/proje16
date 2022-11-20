@@ -1,7 +1,7 @@
 @US008
 Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmalidir
 
-  @TC001
+  @US008_TC001
   Scenario:TC001 "New password confirmation" onaylanabilmelidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
@@ -13,7 +13,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And sayfayi kapatir
 
 
-  @2345
+  @US008_2345
   Scenario Outline:TC002 TC003 TC004 TC005 Sifre en az 1 buyuk harf icermeli ve "Password strength:" seviyesinin degistigi gorulebilmelidir.
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
@@ -33,7 +33,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
       | AAAAssds12   | !!             |
 
 
-  @TC006
+  @US008_TC006
   Scenario: TC006 Guclu bir parola icin sifre en az 7 karakterden olusmalidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
@@ -44,7 +44,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And sayfayi kapatir
 
 
-  @TC007
+  @US008_TC007
   Scenario: TC007 Eski sifre kullanilmamalidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olup account menuden password linke tiklar
@@ -55,7 +55,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And sayfayi kapatir
 
 
-  @negativeTC001
+  @US008_negativeTC001
   Scenario: TC001 negatif "New password confirmation" onaylanabilmelidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
@@ -68,7 +68,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And sayfayi kapatir
 
 
-  @negative1_TC006
+  @US008_negative1_TC006
   Scenario: TC006 negatif Guclu bir parola icin sifre en az 7 karakterden olusmalidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur
@@ -79,7 +79,7 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And sayfayi kapatir
 
 
-  @negative2_TC006
+  @US008_negative2_TC006
   Scenario Outline: TC006 negatif Guclu bir parola icin sifre en az 7 karakterden olusmalidir
     Given kullanici "medunnaUrl" url'e gider
     When kullanici login olur

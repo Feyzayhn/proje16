@@ -85,4 +85,40 @@ public class MedunnaPageS {
 
     @FindBy(xpath = "//*[.='The password and its confirmation do not match!']")
     public WebElement notMatchTextMessage;  // css  .invalid-feedback
+
+
+    // DOCTOR
+    @FindBy(xpath = "//a//*[.='MY PAGES']")
+    public WebElement myPages;
+
+    @FindBy(xpath = "//a//*[.='My Inpatients']")
+    public WebElement myInpatients;
+
+    @FindBy(xpath = "//thead//tr//th")
+    public List<WebElement> patientTableTitles;
+
+    @FindBy(xpath = "//span//*[.='Edit']")
+    public List<WebElement> editButton;
+
+    @FindBy(css = "#in-patient-status")   //   xpath   //*[@id='in-patient-status']
+    public WebElement statusDdm;
+
+    @FindBy(css = "#in-patient-room")  //   xpath   //*[@id='in-patient-room']
+    public WebElement roomDdm;
+
+    @FindBy(css = "table.table")  // xpath    //table[@class='table']
+    public WebElement patientTable;
+
+    @FindBy(css = "#in-patient-appointment")
+    public WebElement appointmentDdm;
+
+    @FindBy(css = "#save-entity>span")
+    public WebElement saveButtonCreatePatient;
+
+
+    //@FindBy(xpath = "//*[contains(text(), 'InPatient status can not be changed with this type of status')]")
+    //public WebElement inPatientSaveMassage;
+
+    //@FindBy(xpath = "//*[contains(text(), 'The In Patient is updated with identifier 303046')]")
+    //public WebElement inPatientSaveMassage2;
 }

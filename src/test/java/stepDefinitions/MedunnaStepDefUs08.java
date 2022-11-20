@@ -11,7 +11,7 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
-public class MedunnaStepDef {
+public class MedunnaStepDefUs08 {
 
     MedunnaPageS page = new MedunnaPageS();
     String sifre;

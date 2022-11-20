@@ -24,14 +24,14 @@ public class ReusableMethods {
     public static String getScreenshot(String name) throws IOException {
 
         // yinelemeyi önlemek için ekran görüntüsünü geçerli tarihle adlandırma
-        String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String date = new SimpleDateFormat("yyyy-MM-dd-HHmm").format(new Date());
 
         // TakesScreenshot is an interface of selenium that takes the screenshot
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
 
         //ekran görüntüsü konumunun tam yolu
-        String target = System.getProperty("user.dir") + "/target/Screenshots/" + name + date + ".png";
+        String target = System.getProperty("user.dir") + "/target/Screenshots/" + name +"_"+ date + ".png";
         File finalDestination = new File(target);
 
         //ekran görüntüsünü verilen yola kaydedin
