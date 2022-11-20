@@ -31,7 +31,7 @@ public class ReusableMethods {
         File source = ts.getScreenshotAs(OutputType.FILE);
 
         //ekran görüntüsü konumunun tam yolu
-        String target = System.getProperty("user.dir") + "/target/Screenshots/" + name +"_"+ date + ".png";
+        String target = System.getProperty("user.dir") + "/target/Screenshots/" + name + "_" + date + ".png";
         File finalDestination = new File(target);
 
         //ekran görüntüsünü verilen yola kaydedin
@@ -221,5 +221,10 @@ public class ReusableMethods {
 
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOfElementLocated(located));
+    }
+
+    public static void jsScrollS() {
+        JavascriptExecutor jsx = (JavascriptExecutor) Driver.getDriver();
+        jsx.executeScript("window.scrollBy(0,600)", "");
     }
 }

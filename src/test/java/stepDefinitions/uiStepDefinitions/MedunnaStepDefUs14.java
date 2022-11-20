@@ -53,7 +53,6 @@ public class MedunnaStepDefUs14 {
     public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
         ReusableMethods.waitFor(3);
-        ReusableMethods.waitForVisibility((WebElement) page.editButton,15);
         int editButton = ReusableMethods.random().nextInt(page.editButton.size() - 1);
         page.editButton.get(editButton).click();
     }

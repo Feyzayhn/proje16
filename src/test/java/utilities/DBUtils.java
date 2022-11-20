@@ -20,14 +20,12 @@ public class DBUtils {
      */
     public static void createConnection() { // Method1 = Baglanti olustur
 
-        String url = "jdbc:postgresql://localhost:5432/techproed";
-        String medunnaUrl = "jdbc:postgresql://medunna.com:5432/medunna_db";
-        String user = "postgres";
-        String medunnaUser = "medunna_user";
-        String password = "690101";
-        String medunnaPassword = "medunna_pass_987";
+        String url = "jdbc:postgresql://medunna.com:5432/medunna_db";
+        String username = "medunna_user";
+        String password = "medunna_pass_987";
         try {
-            connection = DriverManager.getConnection(medunnaUrl, medunnaUser, medunnaPassword);
+
+            connection = DriverManager.getConnection(url, username, password);
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -98,7 +96,7 @@ public class DBUtils {
 
 
     //Use this to get the ResutSet object
-    public static ResultSet getResultset() {
+    public static ResultSet getResultSet() {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         } catch (SQLException e) {
