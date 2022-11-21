@@ -41,7 +41,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici current password girer
     And kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en az yedi karakterli new password girer
     And kullanici Password strength seviyesinin green oldugunu dogrular
-    And sayfayi kapatir
 
 
   @US008_TC007
@@ -52,7 +51,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici save butonuna tiklar
     And kullanici 2 saniye bekler
     And kullanici Password changed! uyarisinin gorunur olmadigini dogrular
-    And sayfayi kapatir
 
 
   @US008_negativeTC001
@@ -65,7 +63,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici new password confirmation box'a new passworddan farkli sifre girer
     And kullanici "The password and its confirmation do not match!" mesajinin gorunur oldugunu dogrular
     And kullanici 2 saniye bekler
-    And sayfayi kapatir
 
 
   @US008_negative1_TC006
@@ -76,7 +73,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici current password girer
     And kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en fazla alti karakterli new password girer
     And kullanici Password strength seviyesinin red oldugunu dogrular
-    And sayfayi kapatir
 
 
   @US008_negative2_TC006
@@ -86,8 +82,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     Then kullanici account menuden password link tiklar
     And kullanici current password girer
     And  Kullanici "<new password>" boxa en az yedi karakter girerek strenght bar'in farkli durumlarini test eder.
-    And sayfayi kapatir
-
 
     Examples:
       | new password          |

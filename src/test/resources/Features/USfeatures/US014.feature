@@ -10,7 +10,7 @@ Feature: US014 Physician (Doctor) "Edit Inpatient" (Yatılı Tedavi) işlemleri 
     Then kullanici 2 saniye bekler
     And Doctor ID, start and end dates, description, created date appointment id, status, room and patient bilgilerini gorunur oldugunu dogrular
     Then kullanici 2 saniye bekler
-    And sayfayi kapatir
+
 
   @US014_TC002
   Scenario: TC002 "Status" doktor tarafindan "UNAPPROVED, DISCHARGED, STILL STAYING , CANCELLED" olarak guncellenebilmelidir.
@@ -22,4 +22,3 @@ Feature: US014 Physician (Doctor) "Edit Inpatient" (Yatılı Tedavi) işlemleri 
     And kullanici 3 saniye bekler
     Then doctor status bilgisi secer ve Save button'a tiklar
     And kullanici 3 saniye bekler
-    #And sayfayi kapatir
