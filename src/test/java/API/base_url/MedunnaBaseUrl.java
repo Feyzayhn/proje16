@@ -12,4 +12,5 @@ public class MedunnaBaseUrl extends Authentication {
     public void setUp() {
         spec = new RequestSpecBuilder().setBaseUri("https://www.medunna.com/api/").build();
     }
+
 }

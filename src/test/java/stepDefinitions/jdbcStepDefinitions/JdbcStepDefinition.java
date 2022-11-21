@@ -6,6 +6,7 @@ import static utilities.DBUtils.*;
 import static utilities.DBUtils.getColumnData;
 
 public class JdbcStepDefinition {
+
     @Given("hasta,doktor ve personel id gorunur oldugunu dogrular")
     public void hastaDoktorVePersonelIdGorunurOldugunuDogrular() {
 
@@ -23,7 +24,6 @@ public class JdbcStepDefinition {
         System.out.println(getColumnData(queryPatient, "id"));
         System.out.println(getColumnData(queryPhysician, "id"));
         System.out.println(getColumnData(queryStaff, "id"));
-
 
         closeConnection();
     }

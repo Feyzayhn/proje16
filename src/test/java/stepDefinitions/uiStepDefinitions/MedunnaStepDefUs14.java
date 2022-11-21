@@ -12,8 +12,7 @@ import utilities.ReusableMethods;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MedunnaStepDefUs14 {
 
@@ -52,9 +51,9 @@ public class MedunnaStepDefUs14 {
     @Then("doctor bilgilerini guncellemek istedigi hastaya edit yapar")
     public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
-        ReusableMethods.waitFor(3);
-        int editButton = ReusableMethods.random().nextInt(page.editButton.size() - 1);
-        page.editButton.get(editButton).click();
+        ReusableMethods.waitForClickable(page.editButton,20);
+        int editButton = ReusableMethods.random().nextInt(page.editButtons.size() - 1);
+        page.editButtons.get(editButton).click();
     }
 
     @Then("doctor status bilgisi secer ve Save button'a tiklar")
@@ -77,5 +76,6 @@ public class MedunnaStepDefUs14 {
         ReusableMethods.jsScrollClick(page.saveButtonCreatePatient);
         ReusableMethods.getScreenshot("statusSecimSave");
         ReusableMethods.waitFor(2);
+
     }
 }
