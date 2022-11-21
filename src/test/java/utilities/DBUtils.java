@@ -228,4 +228,45 @@ public class DBUtils {
         }
         return columns;
     }
+
+    public static Object getSecondCellValue(String query) {
+        return getQueryResultList(query).get(0).get(1);
+    }
+
+    public static void insertCountry(String countryName) {
+    }
+
+    public static void executeInsertion(String query) {
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        try {
+            boolean done = statement.execute(query);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public static int getMaxCountryId(String query, String column) {
+        int max = 0;
+        List<Object> allIds = getColumnData(query, column);
+        for (int i = 0; i < allIds.size(); i++) {
+            int num = Integer.parseInt(allIds.get(i).toString().trim());
+            if (max <= num)
+                max = num;
+        }
+        return max;
+    }
+
+    public static Object getCellValuewithRowsAndCells(String query, int row, int cell) {
+        return getQueryResultList(query).get(row).get(cell);
+    }
+
+    public static List<Object> getRowListWithParam(String query, int row) {
+        return getQueryResultList(query).get(row);
+    }
 }

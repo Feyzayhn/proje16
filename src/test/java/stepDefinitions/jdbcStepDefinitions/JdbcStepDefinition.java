@@ -1,13 +1,14 @@
-package jdbc;
+package stepDefinitions.jdbcStepDefinitions;
 
-import org.junit.Test;
+import io.cucumber.java.en.Given;
 
 import static utilities.DBUtils.*;
+import static utilities.DBUtils.getColumnData;
 
-public class Query01 {
+public class JdbcStepDefinition {
+    @Given("hasta,doktor ve personel id gorunur oldugunu dogrular")
+    public void hastaDoktorVePersonelIdGorunurOldugunuDogrular() {
 
-    @Test
-    public void test01() {
 
         createConnection();
 
@@ -19,8 +20,11 @@ public class Query01 {
         System.out.println(getColumnNames(queryPhysician));
         System.out.println(getColumnNames(queryStaff));
 
-        System.out.println(getColumnData(queryPatient, "first_name"));
+        System.out.println(getColumnData(queryPatient, "id"));
         System.out.println(getColumnData(queryPhysician, "id"));
         System.out.println(getColumnData(queryStaff, "id"));
+
+
+        closeConnection();
     }
 }

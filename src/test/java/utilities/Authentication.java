@@ -21,7 +21,7 @@ public class Authentication {
         postBody.put("password", password);
         postBody.put("rememberMe", true);
 
-        String endPoint = "https://www.gmibank.com/api/authenticate";
+        String endPoint = "https://www.medunna.com/api/authenticate";
 
         Response response = given().contentType(ContentType.JSON).body(postBody).when().post(endPoint);
 

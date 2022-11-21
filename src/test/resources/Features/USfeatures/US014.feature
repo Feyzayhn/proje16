@@ -22,3 +22,13 @@ Feature: US014 Physician (Doctor) "Edit Inpatient" (Yatılı Tedavi) işlemleri 
     And kullanici 3 saniye bekler
     Then doctor status bilgisi secer ve Save button'a tiklar
     And kullanici 3 saniye bekler
+
+
+    @US014_TC003
+    Scenario: TC003 Doktor rezerve edilmiş odayı güncelleyebilmelidir.
+      Given kullanici "medunnaUrl" url'e gider
+      When doktor olarak login olur
+      Then kullanici 2 saniye bekler
+      Then doktor Mypages menusunden MyInpatient'e tiklar
+      Then doctor bilgilerini guncellemek istedigi hastaya edit yapar
+      And doctor rezerve edilmis hasta odasini gunceller
