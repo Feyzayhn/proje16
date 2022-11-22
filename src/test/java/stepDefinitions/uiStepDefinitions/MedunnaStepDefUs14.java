@@ -52,27 +52,27 @@ public class MedunnaStepDefUs14 {
     public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
         ReusableMethods.waitForClickable(page.editButton,20);
+        ReusableMethods.waitForVisibility(page.editButton,15);
         int editButton = ReusableMethods.random().nextInt(page.editButtons.size() - 1);
-        page.editButtons.get(editButton).click();
+        ReusableMethods.jsScrollClick(page.editButtons.get(editButton));
+
     }
 
     @Then("doctor status bilgisi secer ve Save button'a tiklar")
     public void doctorStatusBilgisiSecerVeSaveButtonATiklar() throws IOException {
 
-
-        ReusableMethods.waitFor(2);
         ReusableMethods.getActions()
                 .click(page.statusDdm)
                 .sendKeys(Keys.ENTER)
                 .perform();
         ReusableMethods.getScreenshot("status");
-        ReusableMethods.waitFor(3);
+        ReusableMethods.jsScroll(page.statusDdm);
         List<WebElement> statusDdm = ReusableMethods.select(page.statusDdm).getOptions();
         int index = ReusableMethods.random().nextInt(statusDdm.size() - 1);
         ReusableMethods.select(page.statusDdm).selectByIndex(index);
 
 
-        ReusableMethods.waitForVisibility(page.saveButtonCreatePatient, 10);
+        ReusableMethods.waitForVisibility(page.saveButtonCreatePatient, 15);
         ReusableMethods.jsScrollClick(page.saveButtonCreatePatient);
         ReusableMethods.getScreenshot("statusSecimSave");
         ReusableMethods.waitFor(2);

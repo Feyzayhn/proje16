@@ -19,14 +19,11 @@ public class DBUtils {
     password = medunna_pass_987
      */
     public static void createConnection() { // Method1 = Baglanti olustur
-
         String url = "jdbc:postgresql://medunna.com:5432/medunna_db";
         String username = "medunna_user";
         String password = "medunna_pass_987";
         try {
-
             connection = DriverManager.getConnection(url, username, password);
-
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

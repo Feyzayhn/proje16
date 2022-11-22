@@ -223,8 +223,8 @@ public class ReusableMethods {
         wait.until(ExpectedConditions.visibilityOfElementLocated(located));
     }
 
-    public static void jsScrollS() {
-        JavascriptExecutor jsx = (JavascriptExecutor) Driver.getDriver();
-        jsx.executeScript("window.scrollBy(0,600)", "");
+    public static void scrollDownJs(){
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("window.scrollBy(0,250)", "");
     }
 }

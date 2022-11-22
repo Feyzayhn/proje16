@@ -65,8 +65,11 @@ public class MedunnaPageS {
     // DOCTOR
     @FindBy(xpath = "//a//*[.='MY PAGES']")
     public WebElement myPages;
-    @FindBy(xpath = "//a//*[.='My Inpatients']")
+    //@FindBy(xpath = "//a//*[.='My Inpatients']")
+    //public WebElement myInpatients;
+    @FindBy(linkText = "My Inpatients")
     public WebElement myInpatients;
+
     @FindBy(xpath = "//thead//tr//th")
     public List<WebElement> patientTableTitles;
     @FindBy(xpath = "//span//*[.='Edit']")
