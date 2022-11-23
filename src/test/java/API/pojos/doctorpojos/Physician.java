@@ -1,12 +1,13 @@
-package API.pojos.doctorpojo;
+package API.pojos.doctorpojos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Doktor {
+public class Physician {
 
     private String createdBy;
     private String createdDate;
+    private int id;
     private String firstName;
     private String lastName;
     private String birthDate;
@@ -24,9 +25,10 @@ public class Doktor {
     private Object image;
     private Object imageContentType;
 
-    public Doktor(String createdBy, String createdDate, String firstName, String lastName, String birthDate, String phone, String gender, String bloodGroup, String adress, String description, User user, String speciality, Object appointments, Country country, Cstate cstate, Double examFee, Object image, Object imageContentType) {
+    public Physician(String createdBy, String createdDate, int id, String firstName, String lastName, String birthDate, String phone, String gender, String bloodGroup, String adress, String description, User user, String speciality, Object appointments, Country country, Cstate cstate, Double examFee, Object image, Object imageContentType) {
         this.createdBy = createdBy;
         this.createdDate = createdDate;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -45,7 +47,7 @@ public class Doktor {
         this.imageContentType = imageContentType;
     }
 
-    public Doktor() {
+    public Physician() {
     }
 
     public String getCreatedBy() {
@@ -192,11 +194,20 @@ public class Doktor {
         this.imageContentType = imageContentType;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Doktor{" +
                 "createdBy='" + createdBy + '\'' +
                 ", createdDate='" + createdDate + '\'' +
+                ", id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate='" + birthDate + '\'' +

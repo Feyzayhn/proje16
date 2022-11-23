@@ -7,8 +7,8 @@ import utilities.Driver;
 
 import java.util.List;
 
-public class MedunnaPageS {
-    public MedunnaPageS() {
+public class MedunnaPageS2 {
+    public MedunnaPageS2() {
 
         PageFactory.initElements(Driver.getDriver(), this);
     }

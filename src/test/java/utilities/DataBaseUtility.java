@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DBUtils {
+public class DataBaseUtility {
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
@@ -29,6 +29,17 @@ public class DBUtils {
             e.printStackTrace();
         }
     }//method1 son
+
+    public static void createConnection2(String url, String username, String password) { // Method2 = Baglanti olustur
+        try {
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }//method2 son
+// ------------------------------------------------------------------------------------------------------------------
+
 
     /**
      * DBUtils.executeQuery(String query); -> Execute the query and store is the result set object
@@ -116,6 +127,7 @@ public class DBUtils {
      * The rest of the data will be ignored
      */
     public static Object getCellValue(String query) {
+
         return getQueryResultList(query).get(0).get(0);
     }
 
@@ -125,6 +137,7 @@ public class DBUtils {
      * be returned. The rest of the data will be ignored
      */
     public static List<Object> getRowList(String query) {
+
         return getQueryResultList(query).get(0);
     }
 
@@ -135,6 +148,7 @@ public class DBUtils {
      * only first row will be returned. The rest of the data will be ignored
      */
     public static Map<String, Object> getRowMap(String query) {
+
         return getQueryResultMap(query).get(0);
     }
 
@@ -166,7 +180,7 @@ public class DBUtils {
     /**
      * @return list of values of a single column from the result set
      */
-    public static List<Object> getColumnData(String query, String column) {
+    public static List<Object> getColumnData(String query, String column) { //
         executeQuery(query);
         List<Object> rowList = new ArrayList<>();
         ResultSetMetaData rsmd;
@@ -210,7 +224,7 @@ public class DBUtils {
     /*
      * @return List of columns returned in result set
      */
-    public static List<String> getColumnNames(String query) {
+    public static List<String> getColumnNames(String query) {  // header kismini list olarak getirir.
         executeQuery(query);
         List<String> columns = new ArrayList<>();
         ResultSetMetaData rsmd;
@@ -227,6 +241,7 @@ public class DBUtils {
     }
 
     public static Object getSecondCellValue(String query) {
+
         return getQueryResultList(query).get(0).get(1);
     }
 
@@ -260,10 +275,12 @@ public class DBUtils {
     }
 
     public static Object getCellValuewithRowsAndCells(String query, int row, int cell) {
+
         return getQueryResultList(query).get(row).get(cell);
     }
 
     public static List<Object> getRowListWithParam(String query, int row) {
+
         return getQueryResultList(query).get(row);
     }
 }

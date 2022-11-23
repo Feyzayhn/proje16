@@ -1,4 +1,4 @@
-@jdbc
+@db
 Feature:
 
   Scenario:

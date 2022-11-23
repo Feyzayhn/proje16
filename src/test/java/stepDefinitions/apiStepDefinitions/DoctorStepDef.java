@@ -1,16 +1,13 @@
 package stepDefinitions.apiStepDefinitions;
 
 import API.base_url.MedunnaBaseUrl;
-import API.pojos.doctorpojo.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import API.pojos.doctorpojos.*;
 import io.cucumber.java.en.And;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
-import org.junit.Assert;
 import utilities.ObjectMapperUtils;
 
 import static io.restassured.RestAssured.given;
@@ -54,8 +51,9 @@ public class DoctorStepDef extends MedunnaBaseUrl {
                 true,
                 "en",
                 null, null, "123-65-2365");
-        Doktor expectedData = new Doktor("cevik",
+        Physician expectedData = new Physician("cevik",
                 "2022-11-18T16:03:39.976299Z",
+                309705,
                 "Doktor",
                 "Team16",
                 "2002-03-11T22:00:00Z",
@@ -70,10 +68,11 @@ public class DoctorStepDef extends MedunnaBaseUrl {
         System.out.println("expectedData = " + expectedData);
 
 
-        Doktor actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), Doktor.class);
+        Physician actualData = ObjectMapperUtils.convertJsonToJava(response.asString(), Physician.class);
         System.out.println("actualData = " + actualData);
 
         assertEquals(expectedData.getCreatedBy(), actualData.getCreatedBy());
+        assertEquals(expectedData.getId(), actualData.getId());
         assertEquals(expectedData.getUser().getEmail(), actualData.getUser().getEmail());
         assertEquals(expectedData.getCountry().getName(), actualData.getCountry().getName());
         assertEquals(expectedData.getCstate().getId(), actualData.getCstate().getId());

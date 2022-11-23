@@ -1,32 +1,25 @@
-package API.pojos.doctorpojo;
+package API.pojos.doctorpojos;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Cstate {
+public class Country {
 
     /*
-    "cstate": {
-        "id": 1255,
-        "name": "California",
-        "country": {
-            "id": 1201,
-            "name": "Türkiye"
-        }
+    "country": {
+        "id": 71230,
+        "name": "Gambia"
     },
      */
-
     private int id;
     private String name;
-    private CountryInner country;
 
-    public Cstate(int id, String name, CountryInner country) {
+    public Country(int id, String name) {
         this.id = id;
         this.name = name;
-        this.country = country;
     }
 
-    public Cstate() {
+    public Country() {
     }
 
     public int getId() {
@@ -45,20 +38,11 @@ public class Cstate {
         this.name = name;
     }
 
-    public CountryInner getCountry() {
-        return country;
-    }
-
-    public void setCountry(CountryInner country) {
-        this.country = country;
-    }
-
     @Override
     public String toString() {
-        return "Cstate{" +
+        return "Country{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", country=" + country +
                 '}';
     }
 }

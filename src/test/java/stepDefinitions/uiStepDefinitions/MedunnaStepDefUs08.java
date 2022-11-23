@@ -2,7 +2,7 @@ package stepDefinitions.uiStepDefinitions;
 
 import io.cucumber.java.en.*;
 import org.apache.poi.ss.usermodel.*;
-import pages.MedunnaPageS;
+import pages.MedunnaPageS2;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class MedunnaStepDefUs08 {
 
-    MedunnaPageS page = new MedunnaPageS();
+    MedunnaPageS2 page = new MedunnaPageS2();
     String sifre;
     String eskiSifre;
     String bos;

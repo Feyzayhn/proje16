@@ -1,4 +1,4 @@
-package API.pojos.doctorpojo;
+package API.pojos.doctorpojos;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

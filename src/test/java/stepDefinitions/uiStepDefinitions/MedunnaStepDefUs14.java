@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import pages.MedunnaPageS;
+import pages.MedunnaPageS2;
 import utilities.ConfigReader;
 import utilities.ReusableMethods;
 
@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class MedunnaStepDefUs14 {
 
-    MedunnaPageS page = new MedunnaPageS();
+    MedunnaPageS2 page = new MedunnaPageS2();
 
     @When("doktor olarak login olur")
     public void doktorOlarakLoginOlur() {
