@@ -3,10 +3,12 @@ package stepDefinitions.uiStepDefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import pages.MedunnaPageS2;
 import utilities.ConfigReader;
+import utilities.Driver;
 import utilities.ReusableMethods;
 
 import java.io.IOException;
@@ -51,31 +53,75 @@ public class MedunnaStepDefUs14 {
     @Then("doctor bilgilerini guncellemek istedigi hastaya edit yapar")
     public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
-        ReusableMethods.waitForClickable(page.editButton,20);
-        ReusableMethods.waitForVisibility(page.editButton,15);
-        int editButton = ReusableMethods.random().nextInt(page.editButtons.size() - 1);
-        ReusableMethods.jsScrollClick(page.editButtons.get(editButton));
-
+        ReusableMethods.waitForClickable(page.editButton, 20);
+        ReusableMethods.waitForVisibility(page.editButton, 15);
+        int index = ReusableMethods.random().nextInt(page.editButtons.size() - 1);
+        ReusableMethods.jsScrollClick(page.editButtons.get(index));
     }
 
-    @Then("doctor status bilgisi secer ve Save button'a tiklar")
-    public void doctorStatusBilgisiSecerVeSaveButtonATiklar() throws IOException {
+    @And("{int} saniye bekler")
+    public void saniyeBekler(int sn) {
 
-        ReusableMethods.getActions()
-                .click(page.statusDdm)
-                .sendKeys(Keys.ENTER)
-                .perform();
-        ReusableMethods.getScreenshot("status");
-        ReusableMethods.jsScroll(page.statusDdm);
-        List<WebElement> statusDdm = ReusableMethods.select(page.statusDdm).getOptions();
-        int index = ReusableMethods.random().nextInt(statusDdm.size() - 1);
+        ReusableMethods.waitFor(sn);
+    }
+
+    @Then("doctor status bilgisi secer ve dogrular")
+    public void doctorStatusBilgisiSecerVeDogrular() {
+
+        List<WebElement> statusDDm = ReusableMethods.select(page.statusDdm).getOptions();
+        int index = ReusableMethods.random().nextInt(statusDDm.size() - 1);
         ReusableMethods.select(page.statusDdm).selectByIndex(index);
+        ReusableMethods.jsScrollClick(statusDDm.get(index));
+        String selectedOption = ReusableMethods.select(page.statusDdm).getFirstSelectedOption().getText();
+        System.out.println(selectedOption);
+        try {
+            ReusableMethods.getScreenshot("StatusMenu");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        saniyeBekler(3);
+    }
+
+    @And("doctor rezerve edilmis hasta odasini gunceller")
+    public void doctorRezerveEdilmisHastaOdasiniGunceller() {
+
+        List<WebElement> roomDDM = ReusableMethods.select(page.roomDdm).getOptions();
+        int index = ReusableMethods.random().nextInt(roomDDM.size() - 1);
+        ReusableMethods.select(page.roomDdm).selectByIndex(index);
+        String selectedOption = ReusableMethods.select(page.roomDdm).getFirstSelectedOption().getText();
+        System.out.println(selectedOption);
+        try {
+            ReusableMethods.getScreenshot("RoomMenu");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @And("doctor save butonuna tiklar ve uyariyi dogrular")
+    public void doctorSaveButonunaTiklarVeUyariyiDogrular() throws IOException {
 
 
-        ReusableMethods.waitForVisibility(page.saveButtonCreatePatient, 15);
         ReusableMethods.jsScrollClick(page.saveButtonCreatePatient);
-        ReusableMethods.getScreenshot("statusSecimSave");
-        ReusableMethods.waitFor(2);
+        String expectedData = "InPatient status can not be changed with this type of status";
+        String expectedData2 = "The In Patient is updated with identifier";
+        String expectedData3 = "The room already reserved";
 
+        try {
+            ReusableMethods.waitForClickable(page.inPatientSaveMassage, 15);
+            ReusableMethods.waitForVisibility(page.inPatientSaveMassage, 15);
+            if (expectedData.equals(page.inPatientSaveMassage.getText())) {
+                assertEquals(expectedData, page.inPatientSaveMassage.getText());
+
+            } else if (expectedData3.equals(page.inPatientSaveMassage.getText())) {
+                assertEquals(expectedData3, page.inPatientSaveMassage.getText());
+
+            } else {
+                assertTrue(page.inPatientSaveMassage.getText().contains(expectedData2));
+            }
+            ReusableMethods.getScreenshotWebElement("Save", page.inPatientSaveMassage);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

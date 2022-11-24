@@ -76,7 +76,7 @@ public class MedunnaPageS2 {
     public List<WebElement> editButtons;
     @FindBy(xpath = "//span//*[.='Edit']")
     public WebElement editButton;
-    @FindBy(css = "#in-patient-status")   //   xpath   //*[@id='in-patient-status']
+    @FindBy(css = "#in-patient-status")   //   xpath   //*[@id='in-patient-status']   css - select[name=status]
     public WebElement statusDdm;
     @FindBy(css = "#in-patient-room")  //   xpath   //*[@id='in-patient-room']
     public WebElement roomDdm;
@@ -87,11 +87,19 @@ public class MedunnaPageS2 {
     @FindBy(css = "#save-entity>span")
     public WebElement saveButtonCreatePatient;
 
-    @FindBy(xpath = "//*[contains(text(), 'InPatient status can not be changed with this type of status')]")
-    public WebElement inPatientSaveMassage;
-    @FindBy(xpath = "//*[contains(text(), 'The In Patient is updated with identifier 303046')]")
-    public WebElement inPatientSaveMassage2;
 
+    @FindBy(xpath = "//*[@class='Toastify__toast-body']")
+    public WebElement inPatientSaveMassage;
+
+
+    //*[@class='Toastify__toast-body' and contains(text(), 'The In Patient is updated with identifier')]
+    //*[contains(text(), 'The In Patient is updated with identifier')]
+    //@FindBy(xpath = "//*[contains(text(), 'InPatient status can not be changed with this type of status')]")
+    //public WebElement inPatientSaveMassage2;
+    //@FindBy(xpath = "//*[contains(text(), 'The room already reserved')]")
+    //public WebElement inPatientSaveMassage3;
+    //@FindBy(xpath = "//*[contains(text(), 'The room already reserved')]")
+    //public WebElement inPatientSaveMassage4;
 
     //  -> //a[starts-with(@id,'login')]
     //   -> //*[contains(text(), 'Authentication information not correct.')]
