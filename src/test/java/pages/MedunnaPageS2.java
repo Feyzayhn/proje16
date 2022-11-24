@@ -91,7 +91,7 @@ public class MedunnaPageS2 {
     @FindBy(xpath = "//*[@class='Toastify__toast-body']")
     public WebElement inPatientSaveMassage;
 
-
+    //*[contains(text(), 'The In Patient is updated with identifier')]
     //*[@class='Toastify__toast-body' and contains(text(), 'The In Patient is updated with identifier')]
     //*[contains(text(), 'The In Patient is updated with identifier')]
     //@FindBy(xpath = "//*[contains(text(), 'InPatient status can not be changed with this type of status')]")

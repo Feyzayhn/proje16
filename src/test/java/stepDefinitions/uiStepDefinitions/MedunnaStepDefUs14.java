@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import pages.MedunnaPageS2;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -13,6 +14,7 @@ import utilities.ReusableMethods;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +33,6 @@ public class MedunnaStepDefUs14 {
 
     @Then("doktor Mypages menusunden MyInpatient'e tiklar")
     public void doktorMypagesMenusundenMyInpatientETiklar() {
-
 
         page.myPages.click();
         ReusableMethods.waitFor(3);
@@ -68,7 +69,8 @@ public class MedunnaStepDefUs14 {
     @Then("doctor status bilgisi secer ve dogrular")
     public void doctorStatusBilgisiSecerVeDogrular() {
 
-        List<WebElement> statusDDm = ReusableMethods.select(page.statusDdm).getOptions();
+
+        List<WebElement> statusDDm = ReusableMethods.select(page.statusDdm).getOptions(); // 0 1 2 3
         int index = ReusableMethods.random().nextInt(statusDDm.size() - 1);
         ReusableMethods.select(page.statusDdm).selectByIndex(index);
         ReusableMethods.jsScrollClick(statusDDm.get(index));
@@ -100,11 +102,11 @@ public class MedunnaStepDefUs14 {
     @And("doctor save butonuna tiklar ve uyariyi dogrular")
     public void doctorSaveButonunaTiklarVeUyariyiDogrular() throws IOException {
 
-
         ReusableMethods.jsScrollClick(page.saveButtonCreatePatient);
         String expectedData = "InPatient status can not be changed with this type of status";
         String expectedData2 = "The In Patient is updated with identifier";
         String expectedData3 = "The room already reserved";
+        String expectedData4 = "Such a room not found";
 
         try {
             ReusableMethods.waitForClickable(page.inPatientSaveMassage, 15);
@@ -117,6 +119,10 @@ public class MedunnaStepDefUs14 {
             } else if (expectedData3.equals(page.inPatientSaveMassage.getText())) {
 
                 assertEquals(expectedData3, page.inPatientSaveMassage.getText());
+
+            } else if (page.inPatientSaveMassage.getText().equals(expectedData4)) {
+
+                assertEquals(expectedData4, page.inPatientSaveMassage.getText());
             } else {
 
                 assertTrue(page.inPatientSaveMassage.getText().contains(expectedData2));

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class MedunnaStepDefUs08 {
 
     MedunnaPageS2 page = new MedunnaPageS2();
-    String sifre;
+    String gecerliSifre;
     String eskiSifre;
     String bos;
     String filePath;
@@ -251,7 +251,7 @@ public class MedunnaStepDefUs08 {
         //System.out.println(wb.getSheet("Sayfa1").getRow(0).getCell(0));
         //System.out.println(wb.getSheet("Sayfa1").getRow(1).getCell(0));
 
-        sifre = workbook.getSheet("Sayfa1").getRow(0).getCell(0).toString();
+        gecerliSifre = workbook.getSheet("Sayfa1").getRow(0).getCell(0).toString();
         eskiSifre = workbook.getSheet("Sayfa1").getRow(1).getCell(0).toString();
         bos = "";
 
@@ -262,7 +262,7 @@ public class MedunnaStepDefUs08 {
         ReusableMethods.waitFor(2);
         page.usernameBox.sendKeys(ConfigReader.getProperty("excelUsername"));
         ReusableMethods.waitFor(2);
-        page.passwordBox.sendKeys(sifre);
+        page.passwordBox.sendKeys(gecerliSifre);
         ReusableMethods.waitFor(2);
         page.signInButton.click();
         page.accountMenu.click();
@@ -276,18 +276,18 @@ public class MedunnaStepDefUs08 {
 
         filePath = "src/resources/excelTest.xlsx";
 
-        page.currentPasswordBox.sendKeys(sifre);
+        page.currentPasswordBox.sendKeys(gecerliSifre);
         ReusableMethods.waitFor(2);
         page.newPasswordBox.sendKeys(eskiSifre);
         ReusableMethods.waitFor(2);
         page.confirmPasswordBox.sendKeys(eskiSifre);
         ReusableMethods.waitFor(2);
 
-        bos = sifre;
-        sifre = eskiSifre;
+        bos = gecerliSifre;
+        gecerliSifre = eskiSifre;
         eskiSifre = bos;
 
-        System.out.println("sifre = " + sifre);
+        System.out.println("sifre = " + gecerliSifre);
         System.out.println("eskiSifre = " + eskiSifre);
 
 
@@ -302,13 +302,13 @@ public class MedunnaStepDefUs08 {
         sheet = workbook.getSheet("Sayfa1");
         row = sheet.getRow(1);
         cell = row.getCell(0);
-        fos = new FileOutputStream(filePath);
         row.removeCell(cell);
+        fos = new FileOutputStream(filePath);
         workbook.write(fos);
 
 
         //write
-        workbook.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(sifre);
+        workbook.getSheet("Sayfa1").getRow(0).createCell(0).setCellValue(gecerliSifre);
         workbook.getSheet("Sayfa1").getRow(1).createCell(0).setCellValue(eskiSifre);
         fos = new FileOutputStream(filePath);
         workbook.write(fos);

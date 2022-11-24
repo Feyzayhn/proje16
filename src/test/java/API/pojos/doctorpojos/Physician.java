@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data  // getter setter tostring
+@NoArgsConstructor   // parametresiz cons.
+@AllArgsConstructor  // parametreli cons.
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Physician {
 
@@ -31,5 +31,4 @@ public class Physician {
     private Double examFee;
     private Object image;
     private Object imageContentType;
-
 }

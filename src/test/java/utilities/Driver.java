@@ -22,7 +22,6 @@ public abstract class Driver {
     private Driver() {
 
     }
-
     public static WebDriver getDriver() {
         if (driver == null) {
             switch (ConfigReader.getProperty("browser")) {
