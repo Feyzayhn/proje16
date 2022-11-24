@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>projectMedunna</artifactId>
+    <artifactId>com.CucumberProject</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -128,6 +128,13 @@
             <version>2.17.1</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

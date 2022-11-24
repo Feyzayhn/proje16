@@ -10,7 +10,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici new password girer
     And kullanici new password confirmation girer
     And kullanici "The password and its confirmation do not match!" mesajinin gorunur olmadigini dogrular
-    And sayfayi kapatir
 
 
   @US008_2345
@@ -23,7 +22,6 @@ Feature: US008 Kullanici giris yaptiginda Password sekmesi duzenlenebilir olmali
     And kullanici Password strenght seviyesinin limegreen oldugunu dogrular
     And kullanici "<New password'a>" girmedigi sifre sartini ekler
     And kullanici Password strength seviyesinin green oldugunu dogrular
-    And sayfayi kapatir
 
     Examples:
       | new password | New password'a |
