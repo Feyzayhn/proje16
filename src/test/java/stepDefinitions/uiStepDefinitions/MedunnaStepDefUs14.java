@@ -109,13 +109,16 @@ public class MedunnaStepDefUs14 {
         try {
             ReusableMethods.waitForClickable(page.inPatientSaveMassage, 15);
             ReusableMethods.waitForVisibility(page.inPatientSaveMassage, 15);
+
             if (expectedData.equals(page.inPatientSaveMassage.getText())) {
+
                 assertEquals(expectedData, page.inPatientSaveMassage.getText());
 
             } else if (expectedData3.equals(page.inPatientSaveMassage.getText())) {
-                assertEquals(expectedData3, page.inPatientSaveMassage.getText());
 
+                assertEquals(expectedData3, page.inPatientSaveMassage.getText());
             } else {
+
                 assertTrue(page.inPatientSaveMassage.getText().contains(expectedData2));
             }
             ReusableMethods.getScreenshotWebElement("Save", page.inPatientSaveMassage);
