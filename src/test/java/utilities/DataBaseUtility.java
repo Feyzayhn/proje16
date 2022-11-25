@@ -11,12 +11,13 @@ public class DataBaseUtility {
     private static Statement statement;
     private static ResultSet resultSet;
 
-    /*
-    name = Medunna
-    host = medunna.com
-    Database = medunna_db
-    username = medunna_user
-    password = medunna_pass_987
+
+    /**
+     * name = Medunna
+     * host = medunna.com
+     * Database = medunna_db
+     * username = medunna_user
+     * password = medunna_pass_987
      */
     public static void createConnection() { // Method1 = Baglanti olustur
         String url = "jdbc:postgresql://medunna.com:5432/medunna_db";
@@ -77,20 +78,6 @@ public class DataBaseUtility {
         }
     }
 
-
-    public static Connection getConnection() {
-        String url = "jdbc:sqlserver://184.168.194.58:1433;databaseName=crystalkeyhotels2;user=Ahmet_User;password=Ahmet123!";
-        String username = "Ahmet_User";
-        String password = "Ahmet123!";
-        try {
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
     //used to get statement
     public static Statement getStatement() {
         try {
@@ -101,7 +88,6 @@ public class DataBaseUtility {
         }
         return statement;
     }
-
 
     //Use this to get the ResutSet object
     public static ResultSet getResultSet() {
@@ -141,7 +127,6 @@ public class DataBaseUtility {
         return getQueryResultList(query).get(0);
     }
 
-
     /**
      * @return returns a map which represent a row of data where key is the column
      * name. If the query results in multiple rows and/or columns of data,
@@ -151,7 +136,6 @@ public class DataBaseUtility {
 
         return getQueryResultMap(query).get(0);
     }
-
 
     /**
      * @return returns query result in a list of lists where outer list represents

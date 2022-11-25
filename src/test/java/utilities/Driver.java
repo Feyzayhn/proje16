@@ -15,13 +15,14 @@ import java.util.List;
 
 public abstract class Driver {
 
-    private Wait<WebDriver> shortWait;
-    private static int timeout = 5;
+    Wait<WebDriver> shortWait;
+    static final int timeout = 5;
     static WebDriver driver;
 
     private Driver() {
 
     }
+
     public static WebDriver getDriver() {
         if (driver == null) {
             switch (ConfigReader.getProperty("browser")) {

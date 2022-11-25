@@ -18,5 +18,5 @@ Feature: US014 Physician (Doctor) "Edit Inpatient" (Yatılı Tedavi) işlemleri 
     Then doctor status bilgisi secer ve dogrular
     And 2 saniye bekler
     Then doctor rezerve edilmis hasta odasini gunceller
-    And 3 saniye bekler
+    And 2 saniye bekler
     And doctor save butonuna tiklar ve uyariyi dogrular
