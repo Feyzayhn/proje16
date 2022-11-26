@@ -71,7 +71,7 @@ public class MedunnaStepDefUs14 {
 
 
         List<WebElement> statusDDm = ReusableMethods.select(page.statusDdm).getOptions(); // 0 1 2 3
-        int index = ReusableMethods.random().nextInt(statusDDm.size() - 1);
+        int index = ReusableMethods.random().nextInt(statusDDm.size()) - 1;
         ReusableMethods.select(page.statusDdm).selectByIndex(index);
         ReusableMethods.jsScrollClick(statusDDm.get(index));
         String selectedOption = ReusableMethods.select(page.statusDdm).getFirstSelectedOption().getText();
@@ -88,7 +88,11 @@ public class MedunnaStepDefUs14 {
     public void doctorRezerveEdilmisHastaOdasiniGunceller() {
 
         List<WebElement> roomDDM = ReusableMethods.select(page.roomDdm).getOptions();
-        int index = ReusableMethods.random().nextInt(roomDDM.size() - 1);
+        int index = 0;
+        while (index == 0) {
+            index = ReusableMethods.random().nextInt(roomDDM.size()) - 1;
+        }
+        System.out.println("index = " + index);
         ReusableMethods.select(page.roomDdm).selectByIndex(index);
         String selectedOption = ReusableMethods.select(page.roomDdm).getFirstSelectedOption().getText();
         System.out.println(selectedOption);
