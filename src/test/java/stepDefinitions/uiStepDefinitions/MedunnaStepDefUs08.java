@@ -25,14 +25,14 @@ public class MedunnaStepDefUs08 {
     Cell cell;
     Sheet sheet;
 
-    @Given("kullanici {string} url'e gider")
-    public void kullaniciUrlEGider(String url) {
+    @Given("S2 kullanici {string} url'e gider")
+    public void S2kullaniciUrlEGider(String url) {
 
         Driver.getDriver().get(ConfigReader.getProperty(url));
     }
 
-    @When("kullanici login olur")
-    public void kullaniciLoginOlur() {
+    @When("S2 kullanici login olur")
+    public void S2kullaniciLoginOlur() {
 
         page.accountMenu.click();
         page.signIn.click();
@@ -48,33 +48,33 @@ public class MedunnaStepDefUs08 {
         //        .sendKeys(Keys.ENTER).perform();
     }
 
-    @Then("kullanici account menuden password link tiklar")
-    public void kullaniciAccountMenudenPasswordLinkTiklar() {
+    @Then("S2 kullanici account menuden password link tiklar")
+    public void S2kullaniciAccountMenudenPasswordLinkTiklar() {
 
         page.accountMenu.click();
         page.passwordLink.click();
     }
 
-    @And("kullanici current password girer")
-    public void kullaniciCurrentPasswordGirer() {
+    @And("S2 kullanici current password girer")
+    public void S2kullaniciCurrentPasswordGirer() {
 
         page.currentPasswordBox.sendKeys(ConfigReader.getProperty("userPassword"));
     }
 
-    @And("kullanici new password girer")
-    public void kullaniciNewPasswordGirer() {
+    @And("S2 kullanici new password girer")
+    public void S2kullaniciNewPasswordGirer() {
 
         page.newPasswordBox.sendKeys(ConfigReader.getProperty("userPassword"));
     }
 
-    @And("kullanici new password confirmation girer")
-    public void kullaniciNewPasswordConfirmationGirer() {
+    @And("S2 kullanici new password confirmation girer")
+    public void S2kullaniciNewPasswordConfirmationGirer() {
 
         page.confirmPasswordBox.sendKeys(ConfigReader.getProperty("userPassword"));
     }
 
-    @And("kullanici {string} mesajinin gorunur olmadigini dogrular")
-    public void kullaniciMesajininGorunurOlmadiginiDogrular(String message) throws IOException {
+    @And("S2 kullanici {string} mesajinin gorunur olmadigini dogrular")
+    public void S2kullaniciMesajininGorunurOlmadiginiDogrular(String message) throws IOException {
 
 
         try {
@@ -86,99 +86,58 @@ public class MedunnaStepDefUs08 {
 
     }
 
-    @And("sayfayi kapatir")
-    public void sayfayiKapatir() {
+    @And("S2 sayfayi kapatir")
+    public void S2sayfayiKapatir() {
 
         Driver.closeDriver();
     }
 
-    @And("kullanici buyuk harf,rakam ve ozel karakter ile en az yedi karakter new password girer")
-    public void kullaniciBuyukHarfRakamVeOzelKarakterIleEnAzYediKarakterNewPasswordGirer() throws IOException {
-
-        page.newPasswordBox.sendKeys("AS1222!!");
-    }
-
-    @And("kullanici Password strenght seviyesinin limegreen oldugunu dogrular")
-    public void kullaniciPasswordStrenghtSeviyesininLimegreenOldugunuDogrular() throws IOException {
+    @And("S2 kullanici Password strenght seviyesinin limegreen oldugunu dogrular")
+    public void S2kullaniciPasswordStrenghtSeviyesininLimegreenOldugunuDogrular() throws IOException {
 
         assertEquals(4, page.limeGreenStrength.size());
         ReusableMethods.getScreenshotWebElement("limegreenSS", page.strengthBar);
     }
 
-    @And("kullanici New password'a kucuk harf ekler")
-    public void kullaniciNewPasswordAKucukHarfEkler() {
-
-        page.newPasswordBox.sendKeys("aa");
-    }
-
-    @And("kullanici Password strength seviyesinin green oldugunu dogrular")
-    public void kullaniciPasswordStrengthSeviyesininGreenOldugunuDogrular() throws IOException {
+    @And("S2 kullanici Password strength seviyesinin green oldugunu dogrular")
+    public void S2kullaniciPasswordStrengthSeviyesininGreenOldugunuDogrular() throws IOException {
 
         assertEquals(5, page.greenStrength.size());
         ReusableMethods.getScreenshotWebElement("SSgreen", page.strengthBar);
     }
 
-    @And("kullanici kucuk harf,rakam ve ozel karakter ile en az yedi karakter new password girer")
-    public void kullaniciKucukHarfRakamVeOzelKarakterIleEnAzYediKarakterNewPasswordGirer() {
-
-        page.newPasswordBox.sendKeys("aaa123232!!");
-    }
-
-    @And("kullanici New password'a buyuk harf ekler")
-    public void kullaniciNewPasswordABuyukHarfEkler() {
-
-        page.newPasswordBox.sendKeys("BB");
-    }
-
-
-    @And("kullanici kucuk harf,buyuk harf,rakam ve ozel karakter sartlarindan herhangi ucu ile{string} girer")
-    public void kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterSartlarindanHerhangiUcuIleGirer(String password) {
+    @And("S2 kullanici kucuk harf,buyuk harf,rakam ve ozel karakter sartlarindan herhangi ucu ile{string} girer")
+    public void S2kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterSartlarindanHerhangiUcuIleGirer(String password) {
 
         page.newPasswordBox.sendKeys(password);
     }
 
-    @And("kullanici {string} girmedigi sifre sartini ekler")
-    public void kullaniciGirmedigiSifreSartiniEkler(String karakter) {
+    @And("S2 kullanici {string} girmedigi sifre sartini ekler")
+    public void S2kullaniciGirmedigiSifreSartiniEkler(String karakter) {
 
         page.newPasswordBox.sendKeys(karakter);
     }
-
-    @When("kullanici username {string} girer")
-    public void kullaniciUsernameGirer(String username) {
-
-        page.accountMenu.click();
-        page.signIn.click();
-
-        page.usernameBox.sendKeys(username);
-    }
-
-    @When("kullanici password {string} girer")
-    public void kullaniciPasswordGirer(String password) {
-
-        page.passwordBox.sendKeys(password);
-    }
-
-    @And("kullanici {int} saniye bekler")
-    public void kullaniciSaniyeBekler(int sn) {
+    @And("S2 kullanici {int} saniye bekler")
+    public void S2kullaniciSaniyeBekler(int sn) {
 
         ReusableMethods.waitFor(sn);
     }
 
-    @And("kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en az yedi karakterli new password girer")
-    public void kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterIleEnAzYediKarakterliNewPasswordGirer() {
+    @And("S2 kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en az yedi karakterli new password girer")
+    public void S2kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterIleEnAzYediKarakterliNewPasswordGirer() {
 
         page.newPasswordBox.sendKeys("javA011!!");
     }
 
-    @And("kullanici save butonuna tiklar")
-    public void kullaniciSaveButonunaTiklar() {
+    @And("S2 kullanici save butonuna tiklar")
+    public void S2kullaniciSaveButonunaTiklar() {
 
 
         page.saveButton.click();
     }
 
-    @And("kullanici Password changed! uyarisinin gorunur olmadigini dogrular")
-    public void kullaniciPasswordChangedUyarisininGorunurOlmadiginiDogrular() {
+    @And("S2 kullanici Password changed! uyarisinin gorunur olmadigini dogrular")
+    public void S2kullaniciPasswordChangedUyarisininGorunurOlmadiginiDogrular() {
 
         try {
 
@@ -198,50 +157,50 @@ public class MedunnaStepDefUs08 {
     }
 
 
-    @And("kullanici new password box'a sifre girer")
-    public void kullaniciNewPasswordBoxASifreGirer() {
+    @And("S2 kullanici new password box'a sifre girer")
+    public void S2kullaniciNewPasswordBoxASifreGirer() {
 
         page.newPasswordBox.sendKeys("qwwertA!w");
     }
 
-    @And("kullanici new password confirmation box'a new passworddan farkli sifre girer")
-    public void kullaniciNewPasswordConfirmationBoxANewPassworddanFarkliSifreGirer() {
+    @And("S2 kullanici new password confirmation box'a new passworddan farkli sifre girer")
+    public void S2kullaniciNewPasswordConfirmationBoxANewPassworddanFarkliSifreGirer() {
 
         page.confirmPasswordBox.sendKeys("qwrwett!A");
         page.saveButton.click();
     }
 
-    @And("kullanici {string} mesajinin gorunur oldugunu dogrular")
-    public void kullaniciMesajininGorunurOldugunuDogrular(String message) throws IOException {
+    @And("S2 kullanici {string} mesajinin gorunur oldugunu dogrular")
+    public void S2kullaniciMesajininGorunurOldugunuDogrular(String message) throws IOException {
 
         assertTrue(page.notMatchTextMessage.isDisplayed());
         ReusableMethods.getScreenshotWebElement("dontMatch", page.notMatchTextMessage);
     }
 
-    @And("kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en fazla alti karakterli new password girer")
-    public void kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterIleEnFazlaAltiKarakterliNewPasswordGirer() {
+    @And("S2 kullanici kucuk harf,buyuk harf,rakam ve ozel karakter ile en fazla alti karakterli new password girer")
+    public void S2kullaniciKucukHarfBuyukHarfRakamVeOzelKarakterIleEnFazlaAltiKarakterliNewPasswordGirer() {
 
         page.newPasswordBox.sendKeys("A23!aa");
     }
 
-    @And("kullanici Password strength seviyesinin red oldugunu dogrular")
-    public void kullaniciPasswordStrengthSeviyesininRedOldugunuDogrular() throws IOException {
+    @And("S2 kullanici Password strength seviyesinin red oldugunu dogrular")
+    public void S2kullaniciPasswordStrengthSeviyesininRedOldugunuDogrular() throws IOException {
 
         assertEquals(1, page.redStrength.size());
         ReusableMethods.getScreenshotWebElement("redStrength", page.strengthBar);
     }
 
 
-    @And("Kullanici {string} boxa en az yedi karakter girerek strenght bar'in farkli durumlarini test eder.")
-    public void kullaniciBoxaEnAzYediKarakterGirerekStrenghtBarInFarkliDurumlariniTestEder(String password) throws IOException {
+    @And("S2 Kullanici {string} boxa en az yedi karakter girerek strenght bar'in farkli durumlarini test eder.")
+    public void S2kullaniciBoxaEnAzYediKarakterGirerekStrenghtBarInFarkliDurumlariniTestEder(String password) throws IOException {
 
         page.newPasswordBox.sendKeys(password);
         ReusableMethods.getScreenshotWebElement(password, page.strength);
     }
 
 
-    @When("kullanici login olup account menuden password linke tiklar")
-    public void kullaniciLoginOlupAccountMenudenPasswordLinkeTiklar() throws IOException {
+    @When("S2 kullanici login olup account menuden password linke tiklar")
+    public void S2kullaniciLoginOlupAccountMenudenPasswordLinkeTiklar() throws IOException {
 
 
         filePath = "src/resources/excelTest.xlsx";
@@ -271,8 +230,8 @@ public class MedunnaStepDefUs08 {
         ReusableMethods.waitFor(2);
     }
 
-    @Then("kullanici current passwordu girer ve new password ve confirm password'e eski sifreyi girer")
-    public void kullaniciCurrentPassworduGirerVeNewPasswordVeConfirmPasswordEEskiSifreyiGirer() throws IOException {
+    @Then("S2 kullanici current passwordu girer ve new password ve confirm password'e eski sifreyi girer")
+    public void S2kullaniciCurrentPassworduGirerVeNewPasswordVeConfirmPasswordEEskiSifreyiGirer() throws IOException {
 
         filePath = "src/resources/excelTest.xlsx";
 

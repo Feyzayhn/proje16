@@ -22,8 +22,8 @@ public class MedunnaStepDefUs14 {
 
     MedunnaPageS2 page = new MedunnaPageS2();
 
-    @When("doktor olarak login olur")
-    public void doktorOlarakLoginOlur() {
+    @When("S2 doktor olarak login olur")
+    public void S2doktorOlarakLoginOlur() {
         page.accountMenu.click();
         page.signIn.click();
         page.usernameBox.sendKeys(ConfigReader.getProperty("physicianUsername"));
@@ -31,8 +31,8 @@ public class MedunnaStepDefUs14 {
         page.signInButton.click();
     }
 
-    @Then("doktor Mypages menusunden MyInpatient'e tiklar")
-    public void doktorMypagesMenusundenMyInpatientETiklar() {
+    @Then("S2 doktor Mypages menusunden MyInpatient'e tiklar")
+    public void S2doktorMypagesMenusundenMyInpatientETiklar() {
 
         page.myPages.click();
         ReusableMethods.waitFor(3);
@@ -40,8 +40,8 @@ public class MedunnaStepDefUs14 {
         ReusableMethods.waitFor(3);
     }
 
-    @And("Doctor ID, start and end dates, description, created date appointment id, status, room and patient bilgilerini gorunur oldugunu dogrular")
-    public void doctorIDStartAndEndDatesDescriptionCreatedDateAppointmentIdStatusRoomAndPatientBilgileriniGorunurOldugunuDogrular() throws IOException {
+    @And("S2 Doctor ID, start and end dates, description, created date appointment id, status, room and patient bilgilerini gorunur oldugunu dogrular")
+    public void S2doctorIDStartAndEndDatesDescriptionCreatedDateAppointmentIdStatusRoomAndPatientBilgileriniGorunurOldugunuDogrular() throws IOException {
 
         // List<WebElement> expected = page.patientTableTitles;
 
@@ -51,8 +51,8 @@ public class MedunnaStepDefUs14 {
         ReusableMethods.getScreenshotWebElement("PatientTable", page.patientTable);
     }
 
-    @Then("doctor bilgilerini guncellemek istedigi hastaya edit yapar")
-    public void doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
+    @Then("S2 doctor bilgilerini guncellemek istedigi hastaya edit yapar")
+    public void S2doctorBilgileriniGuncellemekIstedigiHastayaEditYapar() {
 
         ReusableMethods.waitForClickable(page.editButton, 20);
         ReusableMethods.waitForVisibility(page.editButton, 15);
@@ -66,8 +66,8 @@ public class MedunnaStepDefUs14 {
         ReusableMethods.waitFor(sn);
     }
 
-    @Then("doctor status bilgisi secer ve dogrular")
-    public void doctorStatusBilgisiSecerVeDogrular() {
+    @Then("S2 doctor status bilgisi secer ve dogrular")
+    public void S2doctorStatusBilgisiSecerVeDogrular() {
 
 
         List<WebElement> statusDDm = ReusableMethods.select(page.statusDdm).getOptions(); // 0 1 2 3
@@ -84,8 +84,8 @@ public class MedunnaStepDefUs14 {
         saniyeBekler(3);
     }
 
-    @And("doctor rezerve edilmis hasta odasini gunceller")
-    public void doctorRezerveEdilmisHastaOdasiniGunceller() {
+    @And("S2 doctor rezerve edilmis hasta odasini gunceller")
+    public void S2doctorRezerveEdilmisHastaOdasiniGunceller() {
 
         List<WebElement> roomDDM = ReusableMethods.select(page.roomDdm).getOptions();
         int index = 0;
@@ -103,8 +103,8 @@ public class MedunnaStepDefUs14 {
         }
     }
 
-    @And("doctor save butonuna tiklar ve uyariyi dogrular")
-    public void doctorSaveButonunaTiklarVeUyariyiDogrular() throws IOException {
+    @And("S2 doctor save butonuna tiklar ve uyariyi dogrular")
+    public void S2doctorSaveButonunaTiklarVeUyariyiDogrular() throws IOException {
 
         ReusableMethods.jsScrollClick(page.saveButtonCreatePatient);
         String expectedData = "InPatient status can not be changed with this type of status";
