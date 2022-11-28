@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -234,4 +236,13 @@ public class ReusableMethods {
         By locator = By.xpath("//*[.='" + fieldName + "']//following-sibling::input");
         driver.findElement(locator).sendKeys(fieldValue);
     }
+    public static void sayfaKucult() throws AWTException {
+        Robot robot = new Robot();
+        for (int i = 0; i < 2; i++) {
+            robot.keyPress(KeyEvent.VK_CONTROL); //CTRL ye tiklandi
+            robot.keyPress(KeyEvent.VK_SUBTRACT); // - ye tiklandi
+            robot.keyRelease(KeyEvent.VK_SUBTRACT); // CTRL yi birakti
+            robot.keyRelease(KeyEvent.VK_CONTROL); //- yi birakti
+            // CTRL (-) ye basılarak ekran belirlenen miktarda küçültülmüş oldu.
+        }
 }

@@ -31,51 +31,6 @@ public class US007_HastaStepDefinition {
         medunna.Appointment.click();
     }
 
-    @And("Hasta First Name {string} girer")
-
-    public void hastaFirstNameGirer(String isim) {
-
-        medunna.FirstName.sendKeys(isim);
-    }
-
-    @And("Hasta SSN {string} girer")
-    public void hastaSSNGirer(String ssn) {
-
-        medunna.SSN.sendKeys(ssn);
-    }
-
-    @And("Hasta Phone {string} girer")
-    public void hastaPhoneGirer(String arg0) {
-
-        medunna.Phone.sendKeys(arg0);
-    }
-
-    @And("Hasta Last Name {string} girer")
-    public void hastaLastNameGirer(String lastname) {
-
-        medunna.LastName.sendKeys(lastname);
-    }
-
-    @And("Hasta Email {string} girer")
-    public void hastaEmailGirer(String email) {
-
-        medunna.Email.sendKeys(email);
-    }
-
-    @And("Hasta Appointment DateTime{string} girer")
-    public void hastaAppointmentDateTimeGirer(String tarih) {
-
-        ReusableMethods.jsScroll(medunna.Date);
-        medunna.Date.sendKeys(tarih);
-    }
-
-
-    @And("sayfayi kapatir")
-    public void sayfayiKapatir() {
-
-        Driver.quitDriver();
-    }
-
     @And("Hasta randevu bilgilerini girer")
     public void hastaRandevuBilgileriniGirer(DataTable dataTable) {
 
