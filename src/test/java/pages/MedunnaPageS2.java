@@ -113,4 +113,21 @@ public class MedunnaPageS2 {
     // ->  #entity-menu>div>a[href$='aff']  aff ile biten
     // -> div[class="collapse navbar-collapse"] a[href$='ut']
     // -> ul#header-tabs>:last-child
+
+
+    @FindBy(xpath = "//*[.='First Name']//following-sibling::input")
+    public WebElement firstnamePatient;
+    @FindBy(xpath = "//*[.='Last Name']//following-sibling::input")
+    public WebElement lastnamePatient;
+    @FindBy(xpath = "//*[.='SSN']//following-sibling::input")
+    public WebElement ssnPatient;
+    @FindBy(xpath = "//*[.='Phone']//following-sibling::input")
+    public WebElement phonePatient;
+    @FindBy(xpath = "//*[.='Appointment DateTime']//following-sibling::input")
+    public WebElement appointmentDatePatient;
+    @FindBy(xpath = "//*[.='Email']//following-sibling::input")
+    public WebElement emailPatient;
+    @FindBy(css = "button#register-submit>span")
+    public WebElement sendAppointment;
+
 }

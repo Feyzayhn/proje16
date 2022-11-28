@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import static utilities.Driver.driver;
+
 public class ReusableMethods {
 
     //========ScreenShot(Sayfanın resmini alma)=====//
@@ -223,8 +225,13 @@ public class ReusableMethods {
         wait.until(ExpectedConditions.visibilityOfElementLocated(located));
     }
 
-    public static void scrollDownJs(){
+    public static void scrollDownJs() {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("window.scrollBy(0,250)", "");
+    }
+
+    public static void enterField(String fieldName, String fieldValue) {
+        By locator = By.xpath("//*[.='" + fieldName + "']//following-sibling::input");
+        driver.findElement(locator).sendKeys(fieldValue);
     }
 }

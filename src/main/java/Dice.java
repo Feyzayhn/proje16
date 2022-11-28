@@ -45,5 +45,10 @@ public class Dice {
         //    }
         //}
         //System.out.println(s1 + " ve " + s2 + "GCD = " + gcd);
+
+        int a = 6;
+        int b = 3;
+        boolean ex1 = !(a == 7 && (b >= a || a != a));
+        System.out.println(ex1);
     }
 }
