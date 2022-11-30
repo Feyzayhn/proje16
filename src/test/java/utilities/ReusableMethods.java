@@ -245,4 +245,5 @@ public class ReusableMethods {
             robot.keyRelease(KeyEvent.VK_CONTROL); //- yi birakti
             // CTRL (-) ye basılarak ekran belirlenen miktarda küçültülmüş oldu.
         }
+    }
 }

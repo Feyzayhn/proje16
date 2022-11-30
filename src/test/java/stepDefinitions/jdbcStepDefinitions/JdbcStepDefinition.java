@@ -47,17 +47,17 @@ public class JdbcStepDefinition {
 
         //System.out.println(getQueryResultList(queryPatient));
 
-        System.out.println(getSecondCellValue(queryStaff));
-        System.out.println(getMaxCountryId(queryStaff, "id"));
+        //System.out.println(getSecondCellValue(queryStaff));
+        //System.out.println(getMaxCountryId(queryStaff, "id"));
 
 
         //System.out.println(getColumnNames(queryPatient));
         //System.out.println(getColumnNames(queryPhysician));
         //System.out.println(getColumnNames(queryStaff));
 
-        System.out.println(getColumnData(queryPatient, "email"));
-        System.out.println(getColumnData(queryPhysician, "first_name"));
-        System.out.println(getColumnData(queryStaff, "last_name"));
+        //System.out.println(getColumnData(queryPatient, "email"));
+        //System.out.println(getColumnData(queryPhysician, "first_name"));
+        //System.out.println(getColumnData(queryStaff, "last_name"));
 
         closeConnection();
     }
